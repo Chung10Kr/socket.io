@@ -16,8 +16,16 @@ const handleListen = () => console.log(`Listening on http://localhost:${port}`);
 const server = http.createServer(app);
 const wss = new WebSocket.Server({server});
 
-wss.on( "connection" , function(socket){
-    console.log(socket);
+const sockets = [
+
+];
+wss.on( "connection" , (socket)=>{
+    sockets.push(socket);
+    socket.on("close", () => console.log("DisConnected From the Browser.!") );
+    socket.on("message",(message)=>{
+        sockets.forEach(aSocket => aSocket.send(message.toString('utf8') ) );
+    })
+    socket.send( "Hellow" );
 });
 
 server.listen(port, handleListen);
