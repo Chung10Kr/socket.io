@@ -1,1 +1,7 @@
-# Zoom Clone using webRTC and Websockets, NodeJs
+# SocketIo Sample
+
+## setup
+
+npm install
+
+npm run dev
